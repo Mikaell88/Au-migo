@@ -49,14 +49,14 @@ Visual Studio Code (VS Code) será o ambiente de desenvolvimento integrado (IDE)
 
 O Pet Walker App foi criado para resolver um problema real enfrentado por donos de pets em todo o mundo: a dificuldade de garantir que seus animais de estimação recebam a atenção e os cuidados diários necessários. Com uma interface intuitiva e funcionalidades pensadas para maximizar a conveniência e a segurança, o aplicativo visa ser a solução definitiva para donos de pets que buscam praticidade e tranquilidade na hora de cuidar de seus animais.
 
-### :handshake: Contribuição:
+## :handshake: Contribuição:
 
-Mikael Sousa Bueno
+#### :busts_in_silhouette: Mikael Sousa Bueno.
 
-leonardo peron krause
+#### :busts_in_silhouette: leonardo peron krause.
 
-Willian Scheuermann
+#### :busts_in_silhouette: Willian Scheuermann.
 
-Giordano Cerutti Cassini
+#### :busts_in_silhouette: Giordano Cerutti Cassini.
 
-Riskala Tedoldi
+#### :busts_in_silhouette: Riskala Tedoldi.
