@@ -43,15 +43,15 @@ NoSQL:
 O banco de dados NoSQL será utilizado para armazenar dados de forma flexível e escalável, adaptando-se às necessidades dinâmicas do aplicativo, como o cadastro de usuários, agendamentos e avaliações.
 
 VS Code:
-Visual Studio Code (VS Code) será o ambiente de desenvolvimento integrado (IDE) principal utilizado para codificar o aplicativo. Ele oferece uma vasta gama de extensões e funcionalidades que facilitam o desenvolvimento, depuração e manutenção do código.
+Visual Studio Code (VS Code) será o ambiente de desenvolvimento integrado (IDE) principal utilizado para codificar o aplicativo.
 
-Conclusão
+Conclusão:
 O Pet Walker App foi criado para resolver um problema real enfrentado por donos de pets em todo o mundo: a dificuldade de garantir que seus animais de estimação recebam a atenção e os cuidados diários necessários. Com uma interface intuitiva e funcionalidades pensadas para maximizar a conveniência e a segurança, o aplicativo visa ser a solução definitiva para donos de pets que buscam praticidade e tranquilidade na hora de cuidar de seus animais.
 
 Contribuição:
 
-Mikael Sousa Bueno
-leonardo peron krause
-Willian Scheuermann
-Giordano Cerutti Cassini
-Riskala Tedoldi
+#Mikael Sousa Bueno
+#leonardo peron krause
+#Willian Scheuermann
+#Giordano Cerutti Cassini
+#Riskala Tedoldi
