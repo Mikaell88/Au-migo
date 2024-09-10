@@ -14,7 +14,7 @@ Além disso, encontrar alguém de confiança para passear com os pets, especialm
 
 O Au-migo foi desenvolvido para resolver este problema, oferecendo uma solução simples e eficiente para conectar donos de pets a pet walkers de confiança, de maneira rápida e segura. A aplicação foi pensada para facilitar a vida dos donos de pets, permitindo que eles encontrem e contratem pet walkers disponíveis na sua região com apenas alguns cliques.
 
-### :rocket: Como Funciona:
+# :rocket: Como Funciona:
 
 ### :earth_africa: Conexão Instantânea:
 O Au-migo permite que os donos de pets encontrem pet walkers disponíveis nas proximidades em tempo real. O sistema de geolocalização do aplicativo facilita a busca por profissionais próximos, garantindo um atendimento rápido.
