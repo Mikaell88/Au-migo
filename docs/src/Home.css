@@ -86,7 +86,8 @@ body {
   
   
   /* Botões */
-  .cta-button, .submit-button {
+ /* Estilo base para os botões */
+.cta-button, .submit-button {
     color: #ffffff;
     padding: 15px 25px;
     text-decoration: none;
@@ -96,12 +97,28 @@ body {
     margin-top: 20px;
     transition: background 0.3s ease;
   }
-
+  
+  button.submit-button:hover, button.cta-button:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  /* Estilo para o botão de login */
   .login-button {
     background-color: #007bff; /* Azul para o botão de login */
     color: #ffffff;
     font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    transition: background 0.3s ease; /* Transição suave para o efeito hover */
   }
+  
+  /* Efeito de hover para o botão de login */
+  .login-button:hover {
+    background-color: #0056b3; /* Cor de fundo para o efeito hover */
+  }
+  
   
   .cta-button {
     background: linear-gradient(to right, #d67e2c, #d67e2c);
