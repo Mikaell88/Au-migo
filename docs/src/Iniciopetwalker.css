@@ -1,0 +1,83 @@
+
+.App {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    padding: 5px; /* Reduzi o padding */
+    margin: 0 auto; /* Centralização */
+    max-width: 1200px; /* Largura máxima */
+  }
+  .App-header {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ccc; /* Define a borda */
+    border-radius: 10px; /* Define o arredondamento */
+    padding: 10px; /* Adiciona espaçamento interno */
+    background-color: #007bff;
+    min-height: 50px; /* Define uma altura mínima */
+    max-height: 70px; /* Define uma altura máxima */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+  }
+  
+  
+  .location {
+    font-size: 14px;
+    margin-top: 5px; /* Reduzi a margem */
+    margin-bottom: 5px; /* Reduzi a margem */
+    padding: 2px; /* Reduzi o padding */
+  }
+  
+  .profile-icon {
+    font-size: 14px;
+    margin-top: 2px; /* Mantive a margem */
+    margin-bottom: 2px; /* Mantive a margem */
+    padding: 2px; /* Reduzi o padding */
+  }
+  
+  .app-title {
+    font-family: 'Poppins', sans-serif; /* Fonte moderna */
+    font-size: 60px; /* Aumentei o tamanho para dar mais destaque */
+    font-weight: 600; /* Peso da fonte para um visual mais estilizado */
+    margin: 10px 0; /* Ajuste da margem */
+    color: #333; /* Cor mais neutra e moderna */
+  }
+  
+  
+  .buttons-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 40px
+
+  }
+  
+  .app-button {
+    padding: 10px;
+    font-size: 16px;
+    border: none; /* Removi borda padrão */
+    border-radius: 10px;
+    background-color: #007BFF; /* Azul moderno */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transição suave */
+  }
+
+  .app-button:hover {
+    background-color: #0056b3; /* Cor diferente ao passar o mouse */
+  }  
+  
+  .dog-image img {
+    width: 100px;
+    margin: 10px 0; /* Reduzi a margem */
+  }
+  
+  .App-footer {
+    display: flex;
+    justify-content: space-around;
+    padding: 5px; /* Reduzi o padding */
+    background-color: #f8f8f8;
+  }
+  
+  .main-button {
+    font-size: 24px;
+  }
+  

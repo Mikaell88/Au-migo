@@ -4,10 +4,9 @@ import './Home.css';
 function Cadastro() {
   const [role, setRole] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState(''); // Para exibir erros
 
   // Função para capturar os dados do formulário
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const formData = {
       name: document.getElementById('name').value,
@@ -17,39 +16,18 @@ function Cadastro() {
       role: role
     };
 
-    try {
-      // Enviar os dados para a API usando fetch
-      const response = await fetch('https://sua-api.com/cadastro', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+    // Aqui você poderia enviar os dados para uma API
+    console.log(formData);
+    
+    // Atualizar a mensagem de sucesso
+    setSuccessMessage('Cadastro realizado com sucesso!');
 
-      // Verificar se a requisição foi bem-sucedida
-      if (response.ok) {
-        const data = await response.json();
-        // Atualizar a mensagem de sucesso
-        setSuccessMessage('Cadastro realizado com sucesso!');
-        setErrorMessage('');
-
-        // Limpar os campos do formulário
-        document.getElementById('name').value = '';
-        document.getElementById('cpf').value = '';
-        document.getElementById('email').value = '';
-        document.getElementById('password').value = '';
-        setRole('');
-      } else {
-        // Caso ocorra algum erro na resposta da API
-        setErrorMessage('Erro ao realizar o cadastro. Tente novamente.');
-        setSuccessMessage('');
-      }
-    } catch (error) {
-      // Caso ocorra um erro na requisição
-      setErrorMessage('Erro de conexão com a API.');
-      setSuccessMessage('');
-    }
+    // Limpar os campos do formulário e o estado do papel
+    document.getElementById('name').value = '';
+    document.getElementById('cpf').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('password').value = '';
+    setRole('');
   };
 
   // Função para alterar o estado da função (Pet Walker ou Tutor)
@@ -101,7 +79,6 @@ function Cadastro() {
 
         {/* Exibe a mensagem de sucesso se existir */}
         {successMessage && <p className="success-message">{successMessage}</p>}
-        {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Exibe a mensagem de erro se existir */}
       </div>
     </div>
   );

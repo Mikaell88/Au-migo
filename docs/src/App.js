@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Cadastro from './Cadastro'; 
 import Login from './Login';
 import MainPage from './MainPage'; // Importando a página principal
+import Iniciopetwalker from './Iniciopetwalker';
+import Iniciodonopet from './Iniciodonopet';
+
 
 // Definindo o componente Navbar dentro do App.js
 function Navbar() {
@@ -18,6 +21,13 @@ function Navbar() {
       <button className="nav-button">
         <Link to="/Cadastro">Cadastro</Link>
       </button>
+      <button className="nav-button">
+        <Link to="/Iniciopetwalker">Inicio PetWalker</Link>
+      </button>
+      <button className="nav-button">
+        <Link to="/Iniciodonopet">Inicio Dono do Pet</Link>
+      </button>
+      
     </nav>
   );
 }
@@ -41,6 +51,8 @@ function App() {
             <Route path="/Cadastro" element={<Cadastro />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/main" element={<MainPage />} /> {/* Usando MainPage também para /main */}
+            <Route path="/Iniciopetwalker" element={<Iniciopetwalker />} /> {}
+            <Route path="/Iniciodonopet" element={<Iniciodonopet />} /> {}
           </Routes>
         </main>
       </div>
