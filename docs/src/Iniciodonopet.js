@@ -13,7 +13,7 @@ function App() {
         </div>
       </header>
       <main>
-        <h1 className="app-title">Dono do Pet</h1>
+        <h1 className="app-title">Tutor</h1>
         <div className="buttons-container">
           <button className="app-button">Editar Perfil</button>
           <button className="app-button">Localização</button>

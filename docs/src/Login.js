@@ -1,80 +1,81 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
+import './Home.css';
 
-function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+axios.defaults.baseURL = 'http://localhost:8080';
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const loginData = {
-      email,
-      password,
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      senha: '',
+      error: '', // Para armazenar mensagens de erro
     };
+  }
+
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
+
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    const { email, senha } = this.state;
 
     try {
-      const response = await fetch('https://sua-api.com/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(loginData),
-      });
-
-     
-      if (response.ok) {
-        const data = await response.json();
-        // Utilize a resposta da API para algo, como exibir uma mensagem
-        setSuccessMessage(data.message || 'Login realizado com sucesso!');
-        setErrorMessage('');
-      
-        
-
-        // Aqui você poderia armazenar um token no localStorage, se for o caso:
-        localStorage.setItem('token', data.token);
-      } else {
-        const errorData = await response.json();
-        setErrorMessage(errorData.message || 'Erro ao realizar login.');
-        setSuccessMessage('');
-      }
+      const response = await axios.post('/login', { email, senha }); // Altere a rota conforme necessário
+      // Aqui você pode redirecionar o usuário para a página inicial ou realizar alguma ação com a resposta
+      console.log('Login bem-sucedido:', response.data);
+      // Por exemplo, salvar o token em localStorage
+      localStorage.setItem('token', response.data.token);
+      // Redirecionar para a página inicial (use o método de roteamento que você preferir)
+      this.props.history.push('/'); // Altere para a rota que deseja redirecionar
     } catch (error) {
-      setErrorMessage('Erro de conexão com a API.');
-      setSuccessMessage('');
+      console.error("Erro ao fazer login:", error);
+      this.setState({ error: 'E-mail ou senha inválidos!' });
     }
   };
 
-  return (
-    <div className="login-page">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
-          <input 
-            type="email" 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
-            required 
-          />
-        </div>
-        <div>
-          <label>Senha:</label>
-          <input 
-            type="password" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-            required 
-          />
-        </div>
-        <button type="submit" className="login-button">Login</button>
-      </form>
+  render() {
+    const { email, senha, error } = this.state;
 
-      {/* Exibe mensagens de sucesso ou erro */}
-      {successMessage && <p className="success-message">{successMessage}</p>}
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-    </div>
-  );
+    return (
+      <div>
+        <h1>Login</h1>
+        {error && <p className="error">{error}</p>} {/* Exibe mensagem de erro */}
+        <form onSubmit={this.handleSubmit}>
+          <p>
+            <label>
+              E-mail:
+              <input
+                type="email"
+                name="email"
+                value={email}
+                onChange={this.handleChange}
+                required
+              />
+            </label>
+          </p>
+          <p>
+            <label>
+              Senha:
+              <input
+                type="password"
+                name="senha"
+                value={senha}
+                onChange={this.handleChange}
+                required
+              />
+            </label>
+          </p>
+          <p>
+            <button type="submit">Entrar</button>
+          </p>
+        </form>
+      </div>
+    );
+  }
 }
 
 export default Login;

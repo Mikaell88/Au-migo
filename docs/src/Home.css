@@ -1,221 +1,147 @@
 /* Geral */
 body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
-  /* Imagem */
-  .img {
-    border-radius: 20%;
-  }
-  
-  /* Cabeçalho */
-  .header {
-    background: linear-gradient(to right, #d67e2c, #d67e2c);
-    color: white;
-    padding: 40px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .header h1 {
-    margin: 0;
-    font-size: 2.5rem;
-    font-weight: 700;
-  }
-  
-  .header p {
-    margin: 10px 0 0;
-    font-size: 1.2rem;
-  }
-  
-  /* Conteúdo Principal */
-  .main-content {
-    flex: 1;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* Seções */
-.section {
-    margin: 20px 0;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 800px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    text-align: left; /* Alinha o texto à esquerda */
-  }
-  
-  /* Estilo para cabeçalhos dentro da seção */
-  .section h2 {
-    margin-top: 0;
-    font-size: 2rem;
-    color: #d67e2c;
-    text-align: left; /* Garante que o cabeçalho também esteja alinhado à esquerda */
-  }
-  
-  /* Estilo para parágrafos e listas dentro da seção */
-  .section p, .section li {
-    font-size: 1rem;
-    line-height: 1.6;
-    text-align: left; /* Garante que parágrafos e itens da lista estejam alinhados à esquerda */
-  }
-  
-  /* Estilo para listas dentro da seção */
-  .section ul {
-    list-style: none;
-    padding: 0;
-    text-align: left; /* Garante que as listas estejam alinhadas à esquerda */
-  }
-  
-  /* Estilo para itens de lista */
-  .section li {
-    margin: 10px 0;
-  }
-  
-  
-  /* Botões */
- /* Estilo base para os botões */
-.cta-button, .submit-button {
-    color: #ffffff;
-    padding: 15px 25px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    display: inline-block;
-    margin-top: 20px;
-    transition: background 0.3s ease;
-  }
-  
-  button.submit-button:hover, button.cta-button:hover {
-    background-color: #0056b3;
-  }
-  
-  
-  /* Estilo para o botão de login */
-  .login-button {
-    background-color: #007bff; /* Azul para o botão de login */
-    color: #ffffff;
-    font-size: 16px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    display: inline-block;
-    transition: background 0.3s ease; /* Transição suave para o efeito hover */
-  }
-  
-  /* Efeito de hover para o botão de login */
-  .login-button:hover {
-    background-color: #0056b3; /* Cor de fundo para o efeito hover */
-  }
-  
-  
-  .cta-button {
-    background: linear-gradient(to right, #d67e2c, #d67e2c);
-  }
-  
-  .cta-button:hover {
-    background: linear-gradient(to right, #d67e2c, #d67e2c);
-  }
-  
-  .submit-button {
-    width: 100%;
-    background-color: #007bff;
-    font-size: 16px;
-    border: none;
-  }
-  
-  .submit-button:hover {
-    background-color: #007bff;
-  }
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-  
-  
-  /* Navbar */
-  .navbar {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-    background-color: #f4f4f4;
-  }
-  
-  .nav-button {
-    background-color: #007bff;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    margin: 0 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .nav-button a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .nav-button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Formulário */
-  .form-container {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 300px;
-    margin: 20px auto;
-  }
-  
-  h2 {
-    margin-bottom: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-    text-align: left;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .role-buttons {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  button {
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button.active {
-    background-color: #4caf50;
-    color: white;
-  }
-  
+/* Imagem */
+.img {
+  border-radius: 20%;
+}
+
+/* Cabeçalho */
+.header {
+  background: linear-gradient(to right, #d67e2c, #d67e2c);
+  color: white;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.header p {
+  margin: 10px 0 0;
+  font-size: 1.2rem;
+}
+
+/* Conteúdo Principal */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Seções */
+.section {
+  margin: 20px 0;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: left; /* Alinha o texto à esquerda */
+}
+
+/* Estilo para cabeçalhos dentro da seção */
+.section h2 {
+  margin-top: 0;
+  font-size: 2rem;
+  color: #d67e2c;
+  text-align: left;
+}
+
+/* Estilo para parágrafos e listas dentro da seção */
+.section p, .section li {
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
+/* Estilo para listas dentro da seção */
+.section ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+/* Estilo para itens de lista */
+.section li {
+  margin: 10px 0;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background-color: #f4f4f4;
+}
+
+.nav-button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  margin: 0 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.nav-button a {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-button:hover {
+  background-color: #0056b3;
+}
+
+/* Formulário */
+.form-container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  margin: 20px auto;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
