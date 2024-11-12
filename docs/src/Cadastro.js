@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './Cadastro.css';
 
-axios.defaults.baseURL = 'http://localhost:8080';
+axios.defaults.baseURL = "http://localhost:3001";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       users: [],
-      userData: { id: '', name: '', email: '', cpf: '', senha: '' },
+      userData: { name: '', email: '', cpf: '', password: '' },
       isEditMode: false,
       role: '',
-      clickedRole: '', // Adicionando um estado para o botão clicado
+      clickedRole: '',
+      successMessage: ''
     };
   }
 
@@ -22,23 +23,27 @@ class App extends Component {
 
   fetchUsers = async () => {
     try {
-      const response = await axios.get('/users');
-      this.setState({ users: response.data });
+      const response = await axios.get('/user');
+      // Mapeia os usuários para garantir que o campo `_id` seja referenciado como `id`
+      const users = response.data.map(user => ({ ...user, id: user._id }));
+      this.setState({ users });
     } catch (error) {
       console.error("Erro ao carregar usuários:", error);
     }
   };
+  
+  
 
   handleRoleChange = (role) => {
-    this.setState({ role, clickedRole: role }); // Armazena a função clicada
+    this.setState({ role, clickedRole: role });
   };
-  
+
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState((prevState) => ({
       userData: {
         ...prevState.userData,
-        [name]: name === 'id' ? Number(value) : value,
+        [name]: value,
       }
     }));
   };
@@ -46,14 +51,36 @@ class App extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     const { userData, role, isEditMode } = this.state;
-    const payload = { ...userData, role }; // Incluindo o role nos dados enviados
-
+  
+    // Criação do payload com os campos necessários
+    const { id, name, email, password, cpf } = userData;
+    const payload = {
+      name,
+      email,
+      password: password ? password : undefined,  // Inclui password apenas se ele existir
+      cpf,
+      userType: role  // Ajuste do tipo de usuário
+    };
+  
+    console.log("Payload para PUT:", payload);  // Loga o payload para verificação
+  
+    // Verifica se ID está presente no modo de edição
+    if (isEditMode && !id) {
+      console.error("ID do usuário ausente ao tentar atualizar.");
+      return;
+    }
+  
     try {
       if (isEditMode) {
-        await axios.put(`/users/${userData.id}`, payload); // Mudei a URL para incluir o ID
+        // Realiza a requisição PUT com o ID
+        await axios.put(`/user/${id}`, payload);
       } else {
-        await axios.post('/users', payload);
-        this.setState({ successMessage: 'Cadastro realizado com sucesso!' }); // Mensagem de sucesso
+        // Realiza a requisição POST para criar um novo usuário
+        const response = await axios.post('/user', payload);
+        this.setState({ 
+          successMessage: 'Cadastro realizado com sucesso!',
+          users: [...this.state.users, response.data],
+        });
       }
       this.resetForm();
       this.fetchUsers();
@@ -61,20 +88,32 @@ class App extends Component {
       console.error("Erro ao salvar usuário:", error);
     }
   };
+  
+  
+  
 
   loadUser = (user) => {
+    console.log("Carregando usuário:", user);  // Verifique que `user` agora contém `id` após o mapeamento
     this.setState({
-      userData: { id: user.id, name: user.name, email: user.email, cpf: user.cpf, senha: user.senha },
+      userData: { 
+        name: user.name, 
+        email: user.email, 
+        cpf: user.cpf, 
+        password: user.password,
+        id: user.id  // Agora `id` estará disponível para edição
+      },
       role: user.role,
-      clickedRole: user.role, // Adicionando o role clicado ao editar
+      clickedRole: user.role,
       isEditMode: true,
     });
   };
+  
+  
 
-  deleteUser = async (id) => {
+  deleteUser = async (_id) => {
     try {
-      await axios.delete(`/users/${id}`);
-      this.fetchUsers();
+      await axios.delete(`/user/${_id}`);  // Deletando usando _id
+      this.fetchUsers();  // Atualiza a lista de usuários
       this.resetForm();
     } catch (error) {
       console.error("Erro ao deletar usuário:", error);
@@ -83,32 +122,22 @@ class App extends Component {
 
   resetForm = () => {
     this.setState({
-      userData: { id: '', name: '', email: '', cpf: '', senha: '' },
+      userData: { name: '', email: '', cpf: '', password: '' },
       role: '',
-      clickedRole: '', // Resetando o botão clicado
+      clickedRole: '',
       isEditMode: false,
+      successMessage: ''
     });
   };
 
   render() {
-    const { users, userData, isEditMode, clickedRole } = this.state;
+    const { users, userData, isEditMode, clickedRole, successMessage } = this.state;
 
     return (
       <div>
         <h1>Usuários</h1>
+        {successMessage && <div className="success-message">{successMessage}</div>}
         <form onSubmit={this.handleSubmit}>
-          <p>
-            <label>
-              ID:
-              <input
-                type="text"
-                name="id"
-                value={userData.id}
-                onChange={this.handleChange}
-                disabled={isEditMode}
-              />
-            </label>
-          </p>
           <p>
             <label>
               Nome:
@@ -147,8 +176,8 @@ class App extends Component {
               Senha:
               <input
                 type="password"
-                name="senha"
-                value={userData.senha}
+                name="password"
+                value={userData.password}
                 onChange={this.handleChange}
               />
             </label>
@@ -158,10 +187,10 @@ class App extends Component {
             <div className="role-buttons">
               <button
                 type="button"
-                onClick={() => this.handleRoleChange('Pet Walker')}
-                className={`role-button ${clickedRole === 'Pet Walker' ? 'clicked' : ''}`}
+                onClick={() => this.handleRoleChange('PetWalker')}
+                className={`role-button ${clickedRole === 'PetWalker' ? 'clicked' : ''}`}
               >
-                Pet Walker
+                PetWalker
               </button>
               <button
                 type="button"
@@ -182,14 +211,14 @@ class App extends Component {
             <tr><th>ID</th><th>Nome</th><th>E-mail</th><th>CPF</th><th>Ações</th></tr>
           </thead>
           <tbody>
-            {users.map((user) => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
+            {users.map((user, index) => (
+              <tr key={user._id || index}>
+                <td>{user._id}</td>{/* Exibindo o _id */}
                 <td onClick={() => this.loadUser(user)}>{user.name}</td>
                 <td><a href={`mailto:${user.email}`}>{user.email}</a></td>
-                <td>
-                  <button type="button" onClick={() => this.loadUser(user)}>Alterar</button>
-                  <button type="button" onClick={() => this.deleteUser(user.id)}>Excluir</button>
+                <td>{user.cpf}</td><td>
+                <button type="button" onClick={() => this.loadUser(user)}>Alterar</button>
+                <button type="button" onClick={() => this.deleteUser(user._id)}>Excluir</button>
                 </td>
               </tr>
             ))}
