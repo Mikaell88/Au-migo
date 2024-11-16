@@ -24,15 +24,12 @@ class App extends Component {
   fetchUsers = async () => {
     try {
       const response = await axios.get('/user');
-      // Mapeia os usuários para garantir que o campo `_id` seja referenciado como `id`
       const users = response.data.map(user => ({ ...user, id: user._id }));
       this.setState({ users });
     } catch (error) {
       console.error("Erro ao carregar usuários:", error);
     }
   };
-  
-  
 
   handleRoleChange = (role) => {
     this.setState({ role, clickedRole: role });
@@ -52,30 +49,34 @@ class App extends Component {
     event.preventDefault();
     const { userData, role, isEditMode } = this.state;
   
-    // Criação do payload com os campos necessários
+    // Desestruture os campos necessários e remova qualquer valor não necessário
     const { id, name, email, password, cpf } = userData;
+  
+    // Criação do payload condicionalmente, omitindo `password` se estiver vazio
     const payload = {
       name,
       email,
-      password: password ? password : undefined,  // Inclui password apenas se ele existir
       cpf,
-      userType: role  // Ajuste do tipo de usuário
+      userType: role
     };
   
-    console.log("Payload para PUT:", payload);  // Loga o payload para verificação
-  
-    // Verifica se ID está presente no modo de edição
-    if (isEditMode && !id) {
-      console.error("ID do usuário ausente ao tentar atualizar.");
-      return;
+    // Adiciona o campo `password` ao payload apenas se ele não estiver vazio
+    if (password) {
+      payload.password = password;
     }
+  
+    console.log("Payload para submissão:", payload); // Log para verificação
   
     try {
       if (isEditMode) {
-        // Realiza a requisição PUT com o ID
+        if (!id) {
+          console.error("ID do usuário ausente ao tentar atualizar.");
+          return;
+        }
+        // Requisição PUT para atualização
         await axios.put(`/user/${id}`, payload);
       } else {
-        // Realiza a requisição POST para criar um novo usuário
+        // Requisição POST para criação
         const response = await axios.post('/user', payload);
         this.setState({ 
           successMessage: 'Cadastro realizado com sucesso!',
@@ -89,31 +90,27 @@ class App extends Component {
     }
   };
   
-  
-  
 
   loadUser = (user) => {
-    console.log("Carregando usuário:", user);  // Verifique que `user` agora contém `id` após o mapeamento
+    console.log("Carregando usuário:", user);
     this.setState({
-      userData: { 
-        name: user.name, 
-        email: user.email, 
-        cpf: user.cpf, 
-        password: user.password,
-        id: user.id  // Agora `id` estará disponível para edição
+      userData: {
+        name: user.name,
+        email: user.email,
+        cpf: user.cpf,
+        id: user.id,
+        password: ''  // Deixe `password` vazio ao carregar para edição
       },
-      role: user.role,
-      clickedRole: user.role,
+      role: user.userType,
+      clickedRole: user.userType,
       isEditMode: true,
     });
   };
-  
-  
 
-  deleteUser = async (_id) => {
+  deleteUser = async (id) => {
     try {
-      await axios.delete(`/user/${_id}`);  // Deletando usando _id
-      this.fetchUsers();  // Atualiza a lista de usuários
+      await axios.delete(`/user/${id}`);
+      this.fetchUsers();
       this.resetForm();
     } catch (error) {
       console.error("Erro ao deletar usuário:", error);
@@ -171,17 +168,19 @@ class App extends Component {
               />
             </label>
           </p>
-          <p>
-            <label>
-              Senha:
-              <input
-                type="password"
-                name="password"
-                value={userData.password}
-                onChange={this.handleChange}
-              />
-            </label>
-          </p>
+          {!isEditMode && (
+            <p>
+              <label>
+                Senha:
+                <input
+                  type="password"
+                  name="password"
+                  value={userData.password}
+                  onChange={this.handleChange}
+                />
+              </label>
+            </p>
+          )}
           <div className="form-group">
             <label>Eu sou:</label>
             <div className="role-buttons">
@@ -212,13 +211,14 @@ class App extends Component {
           </thead>
           <tbody>
             {users.map((user, index) => (
-              <tr key={user._id || index}>
-                <td>{user._id}</td>{/* Exibindo o _id */}
+              <tr key={user.id || index}>
+                <td>{user.id}</td>
                 <td onClick={() => this.loadUser(user)}>{user.name}</td>
                 <td><a href={`mailto:${user.email}`}>{user.email}</a></td>
-                <td>{user.cpf}</td><td>
-                <button type="button" onClick={() => this.loadUser(user)}>Alterar</button>
-                <button type="button" onClick={() => this.deleteUser(user._id)}>Excluir</button>
+                <td>{user.cpf}</td>
+                <td>
+                  <button type="button" onClick={() => this.loadUser(user)}>Alterar</button>
+                  <button type="button" onClick={() => this.deleteUser(user.id)}>Excluir</button>
                 </td>
               </tr>
             ))}
