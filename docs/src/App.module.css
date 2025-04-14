@@ -1,0 +1,204 @@
+/* App.module.css */
+
+/* Reset básico e fontes */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #f3f4f7, #e2e6ef);
+  color: #333;
+}
+
+/* Layout principal */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Cabeçalho com imagem */
+.header {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  padding: 2rem;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  animation: fadeInDown 1s ease-in-out;
+}
+
+.header h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.header p {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.main-image {
+  max-width: 280px;
+  margin-top: 1rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.main-image:hover {
+  transform: scale(1.03);
+}
+
+/* Navbar estilizada */
+.navbar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background-color: #ffffffdd;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+.nav-button {
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(91, 134, 229, 0.4);
+}
+
+.nav-button a {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(91, 134, 229, 0.6);
+  background: linear-gradient(135deg, #5b86e5, #36d1dc);
+}
+
+/* Conteúdo principal */
+.main-content {
+  flex: 1;
+  padding: 3rem 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.main-content h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: #2575fc;
+  position: relative;
+}
+
+.main-content h2::after {
+  content: '';
+  width: 60px;
+  height: 4px;
+  background: #36d1dc;
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  border-radius: 10px;
+}
+
+.main-content p {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  color: #444;
+}
+
+.main-content ul {
+  list-style: none;
+  padding-left: 0;
+  font-size: 1.1rem;
+}
+
+.main-content ul li {
+  background: #fff;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: background 0.3s ease;
+}
+
+.main-content ul li:hover {
+  background: #e8f0fe;
+}
+
+/* Animações */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2.2rem;
+  }
+
+  .main-content {
+    padding: 2rem 1rem;
+  }
+
+  .nav-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .main-image {
+    width: 100%;
+    max-width: 200px;
+  }
+}
