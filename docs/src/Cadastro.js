@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './Cadastro.css';
+import './cadastro.module.css';
 
 axios.defaults.baseURL = "http://localhost:3001";
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Iniciopetwalker.css';
+import './iniciopetwalker.module.css';
 
 function App() {
   return (

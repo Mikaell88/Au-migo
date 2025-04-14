@@ -1,12 +1,12 @@
 import React from 'react';
-import './Cadastro.css';
+import './cadastro.module.css';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Cadastro from './Cadastro'; 
-import Login from './Login';
-import MainPage from './MainPage'; // Importando a página principal
-import Altera from './Altera';
-import Iniciopetwalker from './Iniciopetwalker';
-import Iniciodonopet from './Iniciodonopet';
+import Cadastro from './cadastro'; 
+import Login from './login';
+import MainPage from './mainPage'; // Importando a página principal
+import Altera from './altera';
+import Iniciopetwalker from './iniciopetwalker';
+import Iniciodonopet from './iniciodonopet';
 
 
 
@@ -54,12 +54,12 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<MainPage />} /> {/* Usando MainPage em vez de HomePage */}
-            <Route path="/Cadastro" element={<Cadastro />} />
-            <Route path="/Login" element={<Login />} />
-            <Route path="/Altera" element={<Altera />} />
+            <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/altera" element={<Altera />} />
             <Route path="/main" element={<MainPage />} /> {/* Usando MainPage também para /main */}
-            <Route path="/Iniciopetwalker" element={<Iniciopetwalker />} /> {}
-            <Route path="/Iniciodonopet" element={<Iniciodonopet />} /> {}
+            <Route path="/iniciopetwalker" element={<Iniciopetwalker />} /> {}
+            <Route path="/iniciodonopet" element={<Iniciodonopet />} /> {}
           </Routes>
         </main>
       </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Altera.css';
+import './altera.module.css';
 
 function Altera() {
   return (

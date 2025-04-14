@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './Home.css';
+import './home.module.css';
 
 axios.defaults.baseURL = 'http://localhost:3001';
 
