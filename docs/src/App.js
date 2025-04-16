@@ -2,12 +2,12 @@ import React from 'react';
 import styles from './App.module.css'; // CSS Module corretamente importado
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
-import Cadastro from './cadastro'; 
-import Login from './login';
-import MainPage from './mainPage';
-import Altera from './altera';
-import Iniciopetwalker from './iniciopetwalker';
-import Iniciodonopet from './iniciodonopet';
+import Cadastro from './Cadastro'; 
+import Login from './Login';
+import MainPage from './MainPage';
+import Altera from './Altera';
+import Iniciopetwalker from './Iniciopetwalker';
+import Iniciodonopet from './Iniciodonopet';
 
 function Navbar() {
   return (
