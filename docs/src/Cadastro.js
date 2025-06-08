@@ -20,7 +20,7 @@ const Cadastro = ({ onSubmit }) => {
 
   return (
     <div className={styles.formContainer}>
-      <h2>Cadastro de Usuário</h2>
+      <h2 className={styles.title}>Cadastro de Usuário</h2>
       <form onSubmit={handleSubmit}>
         <label className={styles.formLabel}>Nome:</label>
         <input
