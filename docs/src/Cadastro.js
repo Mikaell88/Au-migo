@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './Cadastro.module.css';  // nome exato do arquivo
+import styles from './cadastro.module.css';  // nome exato do arquivo
 
 const Cadastro = ({ onSubmit }) => {
   const [formData, setFormData] = useState({

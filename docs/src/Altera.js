@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Altera.module.css';
+import styles from './altera.module.css';
 
 const Altera = ({ usuarios, onEditar, onExcluir }) => (
   <div className={styles.listContainer}>
