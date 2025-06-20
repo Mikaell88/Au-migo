@@ -100,6 +100,88 @@
   transform: scale(1.2);
 }
 
+/* User Card */
+.userCard {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 18px rgba(91, 134, 229, 0.10);
+  padding: 2rem 2.5rem;
+  margin: 1.5rem auto 2rem auto;
+  max-width: 420px;
+  font-size: 1.1rem;
+  color: #333;
+  animation: fadeIn 0.8s;
+}
+
+.userCard strong {
+  color: #36d1dc;
+  font-size: 1.2rem;
+  display: block;
+  margin-bottom: 0.7rem;
+}
+
+/* Edit User Form */
+.formContainer {
+  background: #f8fbfd;
+  border-radius: 18px;
+  box-shadow: 0 4px 18px rgba(91, 134, 229, 0.10);
+  padding: 2rem 2.5rem;
+  margin: 2rem auto;
+  max-width: 420px;
+  animation: fadeIn 0.8s;
+}
+
+.title {
+  text-align: center;
+  color: #5b86e5;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.formLabel {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: #5b86e5;
+  font-weight: 500;
+  margin-top: 1.1rem;
+}
+
+.formInput {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1.5px solid #d0e6f6;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 0.7rem;
+  background: #fff;
+  transition: border 0.2s;
+}
+
+.formInput:focus {
+  border: 1.5px solid #5b86e5;
+  outline: none;
+}
+
+.formButton {
+  background: linear-gradient(to right, #5b86e5, #36d1dc);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 0.7rem 2rem;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 1.2rem;
+  margin-right: 0.7rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.formButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(54, 209, 220, 0.18);
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

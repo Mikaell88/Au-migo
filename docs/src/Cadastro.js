@@ -1,21 +1,77 @@
 import React, { useState } from 'react';
-import styles from './Cadastro.module.css';  // nome exato do arquivo
+import styles from './cadastro.module.css';  // nome exato do arquivo
+
+const baseUrl = process.env.API_BASE_URL || 'http://localhost:3002';
+
+const neighborhoods = [
+  'Centro',
+  'Trindade',
+  'Ingleses',
+  'Campeche',
+  'Coqueiros',
+  'Estreito',
+  'Itacorubi',
+  'Jurerê',
+  'Lagoa da Conceição',
+  'Saco dos Limões',
+];
 
 const Cadastro = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
-    nome: '',
+    name: '',
     email: '',
     cpf: '',
-    senha: '',
+    password: '',
+    userType: '',
+    neighborhoods: [], // New field for neighborhoods
   });
 
-  const handleChange = e =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
-  const handleSubmit = e => {
+  const handleChange = e => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleNeighborhoodChange = e => {
+    const { options } = e.target;
+    if (formData.userType === 'PetWalker') {
+      // Multi-select for PetWalker
+      const selected = [];
+      for (let i = 0; i < options.length; i++) {
+        if (options[i].selected) {
+          selected.push(options[i].value);
+        }
+      }
+      setFormData({ ...formData, neighborhoods: selected });
+    } else {
+      // Single select for Tutor
+      setFormData({ ...formData, neighborhoods: [e.target.value] });
+    }
+  };
+
+  const handleSubmit = async e => {
     e.preventDefault();
-    onSubmit?.(formData);
-    setFormData({ nome: '', email: '', cpf: '', senha: '' });
+    setError('');
+    setSuccess('');
+    try {
+      const payload = { ...formData };
+
+      const response = await fetch(`${baseUrl}/user`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message || 'Erro ao cadastrar usuário');
+      }
+      setSuccess('Usuário cadastrado com sucesso!');
+      setFormData({ name: '', email: '', cpf: '', password: '', userType: '', neighborhoods: [] });
+      onSubmit?.(formData);
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
@@ -26,8 +82,8 @@ const Cadastro = ({ onSubmit }) => {
         <input
           className={styles.formInput}
           type="text"
-          name="nome"
-          value={formData.nome}
+          name="name"
+          value={formData.name}
           onChange={handleChange}
           required
         />
@@ -56,15 +112,57 @@ const Cadastro = ({ onSubmit }) => {
         <input
           className={styles.formInput}
           type="password"
-          name="senha"
-          value={formData.senha}
+          name="password"
+          value={formData.password}
           onChange={handleChange}
           required
+          minLength={4}
         />
+
+        <label className={styles.formLabel}>Tipo de Usuário:</label>
+        <select
+          className={styles.formInput}
+          name="userType"
+          value={formData.userType}
+          onChange={handleChange}
+          required
+        >
+          <option value="">Selecione...</option>
+          <option value="PetWalker">PetWalker</option>
+          <option value="Tutor">Tutor</option>
+        </select>
+
+        {/* Show neighborhoods select only if userType is chosen */}
+        {formData.userType && (
+          <>
+            <label className={styles.formLabel}>Bairro{formData.userType === 'PetWalker' ? 's' : ''}:</label>
+            <select
+              className={styles.formInput}
+              name="neighborhoods"
+              value={formData.neighborhoods}
+              onChange={handleNeighborhoodChange}
+              required
+              multiple={formData.userType === 'PetWalker'}
+            >
+              <option value="" disabled>
+                {formData.userType === 'PetWalker'
+                  ? 'Selecione um ou mais bairros...'
+                  : 'Selecione um bairro...'}
+              </option>
+              {neighborhoods.map(bairro => (
+                <option key={bairro} value={bairro}>
+                  {bairro}
+                </option>
+              ))}
+            </select>
+          </>
+        )}
 
         <button className={styles.formButton} type="submit">
           Cadastrar
         </button>
+        {error && <div style={{ color: 'red', marginTop: 8 }}>{error}</div>}
+        {success && <div style={{ color: 'green', marginTop: 8 }}>{success}</div>}
       </form>
     </div>
   );
